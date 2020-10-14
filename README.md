@@ -49,11 +49,11 @@ With the following features:
 
 * [x] Create server folder
 * [x] npm init -y
-* [x] npm install express morgan
-* [x] Setup index.js
-* [x] Add GET / route
-* [x] Add POST /mews route
-  * [x] log out req.body
+* [xx] npm install express morgan
+* [] Setup index.js
+* [] Add GET / route
+* [] Add POST /mews route
+  * [] log out req.body
 
 ## Front-end
 
