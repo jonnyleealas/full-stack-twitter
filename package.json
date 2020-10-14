@@ -1,0 +1,19 @@
+{
+  "name": "full-stack-twitter",
+  "version": "1.0.0",
+  "description": "Twitter clone project demonstrating Event Driven Architecture(EDA) using JS/ Node.js/Socket.io.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jonnyleealas/full-stack-twitter.git"
+  },
+  "author": "Jonathon Lee",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jonnyleealas/full-stack-twitter/issues"
+  },
+  "homepage": "https://github.com/jonnyleealas/full-stack-twitter#readme"
+}
