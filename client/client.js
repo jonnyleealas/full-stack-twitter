@@ -2,7 +2,9 @@
 // this grabs the form from html using a css selector
 // any time you see document mean client side
 // this listen when user clicks button to grab data from form
-const form = document.querySelector('form');
+const form = document.querySelector('form'); 
+// grabs mews from fetch to give to html. will later use in mewElement.appendchild(div)
+const mewsElement = document.querySelector('.mews');
 const API_URL = 'http://localhost:5000/mews'
 // hides loading when not loading
 const loadingElement = document.querySelector('.loading')
@@ -49,7 +51,21 @@ function listAllMews(){
     // parse the data using json
         .then(response => response.json())
         .then(mews => {
-            console.log(mews,'fuck')
-              
+            console.log('fuck', mews)
+            mews.forEach(mew =>{
+                // this create div/h3/p tag to each mew object based on class
+                const div = document.createElement('div')
+                const header = document.createElement('h3')
+                header.textContent = mew.name;
+                const contents = document.createElement('p')
+                contents.textContent = mew.content;
+                // we need to then append it to the page by appending
+                div.appendChild(header)
+                div.appendChild(contents)
+                mewsElement.appendChild(div)
+            })       
+            // hides loading element after post is sent to page
+            loadingElement.style.display = 'none';
     })
+
 }
