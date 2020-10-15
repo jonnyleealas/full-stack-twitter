@@ -20,6 +20,15 @@ app.get('/', (req, res)=>{
         message: 'was up'
     })
 })
+// when server receives a get request to /mew get records from db and respond with array
+app.get('/mews', (req, res)=>{
+    mews
+        .find() //find things in db
+        .then(mews =>{
+            // respond with db array
+            res.json(mews)
+        })
+})
 function isValidMew(mew){
     
     // validate whether content and name are sent through req
@@ -37,6 +46,7 @@ app.post('/mews', (req, res)=>{
         content: req.body.content.toString(),    
         created: new Date()
     };
+    console.log(mew)
     // inserts the collection 
     // then responds with the data that was inserted
     mews
