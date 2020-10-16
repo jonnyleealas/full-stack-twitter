@@ -27,7 +27,7 @@ form.addEventListener('submit', (event)=>{
     //this give direction to hide form at send and show loading gif
     form.style.display = 'none';
     loadingElement.style.display = '';
-    // this creates a post request to server similar to ajax
+    // submitting to server.this creates a post request to server similar to ajax
     fetch(API_URL, {
         method: 'POST',
         body: JSON.stringify(mew),
@@ -40,18 +40,22 @@ form.addEventListener('submit', (event)=>{
             form.reset()
             // show form when you're done submitting instead of load gif
             form.style.display = '';
-            loadingElement.style.display = 'none';
-          console.log(createdMew);
+            // adding this here refresh the list so it pops up in page
+            listAllMews()
       } )
 })
 
 function listAllMews(){
+    // blank out everything and add something new
+    mewsElement.innerHTML = '';
     // this will make a get req to all the data
     fetch(API_URL)
     // parse the data using json
         .then(response => response.json())
         .then(mews => {
             console.log('fuck', mews)
+            // this reverse the text to show latest mews at the top like a stack
+            mews.reverse()
             mews.forEach(mew =>{
                 // this create div/h3/p tag to each mew object based on class
                 const div = document.createElement('div')
@@ -59,10 +63,14 @@ function listAllMews(){
                 header.textContent = mew.name;
                 const contents = document.createElement('p')
                 contents.textContent = mew.content;
+                const date = document.createElement('small')
+                date.textContent = new Date(mew.created)
                 // we need to then append it to the page by appending
                 div.appendChild(header)
                 div.appendChild(contents)
+                div.appendChild(date);
                 mewsElement.appendChild(div)
+
             })       
             // hides loading element after post is sent to page
             loadingElement.style.display = 'none';
