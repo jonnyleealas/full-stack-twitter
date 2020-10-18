@@ -9,9 +9,9 @@ const API_URL = 'http://localhost:5000/mews'
 // hides loading when not loading
 const loadingElement = document.querySelector('.loading')
 // after too many request to post wait 30sec to un-hide post form 
-setTimeout(()=>{
-    loadingElement.style.display = '';
-},30000)
+// setTimeout(()=>{
+//     loadingElement.style.display = '';
+// },30000)
 // when page loads request all the mews from get request
 listAllMews()
 form.addEventListener('submit', (event)=>{

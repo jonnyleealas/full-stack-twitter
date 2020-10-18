@@ -7,7 +7,7 @@ const monk = require('monk')
 //limits the amount of characters in a  post
 const rateLimit = require("express-rate-limit");
 // connect mongo db to online local machine called mewoer
-const db = monk('localhost/meower')
+const db = monk(process.env.MONGO_URI || 'localhost/meower')
 // creates a collection inside our database
 const mews = db.get('mews')
 
