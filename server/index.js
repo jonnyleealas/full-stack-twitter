@@ -2,7 +2,10 @@
 const express = require('express')
 const app = express();
 const cors = require('cors')
+// communicates with mongo
 const monk = require('monk')
+//limits the amount of characters in a  post
+const rateLimit = require("express-rate-limit");
 // connect mongo db to online local machine called mewoer
 const db = monk('localhost/meower')
 // creates a collection inside our database
@@ -35,6 +38,14 @@ function isValidMew(mew){
     return mew.name && mew.name.toString().trim() !== '' &&
     mew.content && mew.content.toString().trim() !== ''; 
 }
+// envoke rate-limit/ placement changes what it limits like global middleware
+app.use(rateLimit({
+    // request every 30 seconds
+    windowMs: 30 * 1000,
+    // 1 message per 30 second ratelimit 
+    max: 1
+}))
+
 
 app.post('/mews', (req, res)=>{
     // stop people from hitting submit without typing a message
